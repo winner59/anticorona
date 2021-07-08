@@ -125,7 +125,7 @@ git clone https://github.com/winner59/anticorona.git
 ![image](https://user-images.githubusercontent.com/82795860/124969377-928b8a00-e061-11eb-9650-515994e194ec.png)
 
 ## System Architecture
-![image](https://user-images.githubusercontent.com/82795860/123356761-43deea00-d5a3-11eb-8dbe-28b4f8cc00a4.png)
+![image](https://user-images.githubusercontent.com/82795860/124970058-6b818800-e062-11eb-8bbd-24874adfdd52.png)
 
 
 # 구현
@@ -152,13 +152,13 @@ mvn spring-boot:run
 msaez.io 를 통해 구현한 Aggregate 단위로 Entity 를 선언 후, 구현을 진행하였다.
 Entity Pattern 과 Repository Pattern을 적용하기 위해 Spring Data REST 의 RestRepository 를 적용하였다.
 
-Appylying 서비스의 appying.java
+Appylying 서비스의 applying.java
 
-![image](https://user-images.githubusercontent.com/82795860/123354847-6f5fd580-d59f-11eb-8cb3-4012150a6e9a.png)
+![image](https://user-images.githubusercontent.com/82795860/124970262-ab486f80-e062-11eb-8044-274208d86b93.png)
 
  Appylying 서비스의 PolicyHandler.java
 
-![image](https://user-images.githubusercontent.com/82795860/123354879-80104b80-d59f-11eb-8239-96d7df85b65f.png)
+![image](https://user-images.githubusercontent.com/82795860/124970349-c4512080-e062-11eb-8a0b-766534b1ab03.png)
 
  Appylying 서비스의 ApplyingRepository.java
 
@@ -171,98 +171,7 @@ DDD 적용 후 REST API의 테스트를 통하여 정상적으로 동작하는 �
 API GateWay를 통하여 마이크로 서비스들의 진입점을 통일할 수 있다. 
 다음과 같이 GateWay를 적용하였다.
 
-```yaml
-server:
-  port: 8088
-
----
-
-spring:
-  profiles: default
-  cloud:
-    gateway:
-      routes:
-        - id: vaccine
-          uri: http://localhost:8081
-          predicates:
-            - Path=/vaccines/** 
-        - id: booking
-          uri: http://localhost:8082
-          predicates:
-            - Path=/bookings/** 
-        - id: mypage
-          uri: http://localhost:8083
-          predicates:
-            - Path= /mypages/**
-        - id: injection
-          uri: http://localhost:8084
-          predicates:
-            - Path=/injections/**,/cancellations/**
-        - id: applying
-          uri: http://localhost:8085
-          predicates:
-            - Path= /applyings/**
-        - id: issue
-          uri: http://localhost:8086
-          predicates:
-            - Path=/issues/**  
-      globalcors:
-        corsConfigurations:
-          '[/**]':
-            allowedOrigins:
-              - "*"
-            allowedMethods:
-              - "*"
-            allowedHeaders:
-              - "*"
-            allowCredentials: true
-
-
----
-
-spring:
-  profiles: docker
-  cloud:
-    gateway:
-      routes:
-        - id: vaccine
-          uri: http://vaccine:8080
-          predicates:
-            - Path=/vaccines/** 
-        - id: booking
-          uri: http://booking:8080
-          predicates:
-            - Path=/bookings/** 
-        - id: mypage
-          uri: http://mypage:8080
-          predicates:
-            - Path= /mypages/**
-        - id: injection
-          uri: http://injection:8080
-          predicates:
-            - Path=/injections/**,/cancellations/**
-        - id: applying
-          uri: http://applying:8080
-          predicates:
-            - Path= /applyings/**
-        - id: issue
-          uri: http://issue:8080
-          predicates:
-            - Path= /issues/** 
-      globalcors:
-        corsConfigurations:
-          '[/**]':
-            allowedOrigins:
-              - "*"
-            allowedMethods:
-              - "*"
-            allowedHeaders:
-              - "*"
-            allowCredentials: true
-
-server:
-  port: 8080
-```  
+![image](https://user-images.githubusercontent.com/82795860/124970513-f6628280-e062-11eb-9375-c7aa8848adc9.png)
 mypage 서비스의 GateWay 적용
 
 
@@ -304,11 +213,11 @@ Applying 서비스 내 external.InjectionService
 
 Applying 서비스 내 Req/Resp
 
-![image](https://user-images.githubusercontent.com/82795860/123353801-4b02f980-d59d-11eb-8df3-2c293f4dea03.png)
+![image](https://user-images.githubusercontent.com/82795860/124970705-33c71000-e063-11eb-85f3-6c25c7da2fcd.png)
 
 Injection 서비스 내 Applying 서비스 Feign Client 요청 대상
 
-![image](https://user-images.githubusercontent.com/82795860/123353731-23139600-d59d-11eb-9f82-ad89c0783d0b.png)
+![image](https://user-images.githubusercontent.com/82795860/124970833-62dd8180-e063-11eb-83bb-20ebc922fdf6.png)
 
 동작 확인
 
@@ -494,7 +403,7 @@ spec:
 ```	  
 
 - deploy 완료
-![image](https://user-images.githubusercontent.com/82795860/123371395-ae505400-d5bc-11eb-8e66-fffc5e8ab1e4.png)
+![image](https://user-images.githubusercontent.com/82795860/124970951-98826a80-e063-11eb-97bd-7ba543383a80.png)
 
 
 ***
