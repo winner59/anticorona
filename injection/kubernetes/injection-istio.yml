@@ -1,0 +1,13 @@
+  apiVersion: networking.istio.io/v1alpha3
+  kind: VirtualService
+  metadata:
+    name: vs-injection-network-rule
+    namespace: anticorona
+  spec:
+    hosts:
+    - injection
+    http:
+    - route:
+      - destination:
+          host: injection
+      timeout: 3s

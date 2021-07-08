@@ -1,0 +1,74 @@
+server:
+  port: 8088
+
+---
+
+spring:
+  profiles: default
+  cloud:
+    gateway:
+      routes:
+        - id: injection
+          uri: http://localhost:8081
+          predicates:
+            - Path=/injections/** 
+        - id: applying
+          uri: http://localhost:8082
+          predicates:
+            - Path=/applyings/** 
+        - id: mypage
+          uri: http://localhost:8083
+          predicates:
+            - Path= /mypages/**
+        - id: issue
+          uri: http://localhost:8084
+          predicates:
+            - Path=/issues/**,/cancellations/** 
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+
+---
+
+spring:
+  profiles: docker
+  cloud:
+    gateway:
+      routes:
+        - id: injection
+          uri: http://injection:8080
+          predicates:
+            - Path=/injections/** 
+        - id: applying
+          uri: http://applying:8080
+          predicates:
+            - Path=/applyings/** 
+        - id: mypage
+          uri: http://mypage:8080
+          predicates:
+            - Path= /mypages/**
+        - id: issue
+          uri: http://issue:8080
+          predicates:
+            - Path=/issues/**,/cancellations/** 
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+server:
+  port: 8080
