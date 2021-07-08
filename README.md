@@ -111,7 +111,7 @@ git clone https://github.com/winner59/anticorona.git
 
 ## 기능 요구사항 Coverage
 
-![image](https://user-images.githubusercontent.com/82795860/123356984-be0f6e80-d5a3-11eb-8b69-d44483845d98.png)
+![image](https://user-images.githubusercontent.com/82795860/125000711-f4f98000-e08b-11eb-8399-7248f058aa86.png)
 ```
  1.접종관리자는 접종정보 (백신이름,접종상태)을 등록한다
  2.고객은 증명서 발급을 신청한다 (Async)
@@ -152,15 +152,15 @@ mvn spring-boot:run
 msaez.io 를 통해 구현한 Aggregate 단위로 Entity 를 선언 후, 구현을 진행하였다.
 Entity Pattern 과 Repository Pattern을 적용하기 위해 Spring Data REST 의 RestRepository 를 적용하였다.
 
-Appylying 서비스의 applying.java
+Applying 서비스의 applying.java
 
 ![image](https://user-images.githubusercontent.com/82795860/124970262-ab486f80-e062-11eb-8044-274208d86b93.png)
 
- Appylying 서비스의 PolicyHandler.java
+ Applying 서비스의 PolicyHandler.java
 
 ![image](https://user-images.githubusercontent.com/82795860/124970349-c4512080-e062-11eb-8a0b-766534b1ab03.png)
 
- Appylying 서비스의 ApplyingRepository.java
+ Applying 서비스의 ApplyingRepository.java
 
 ![image](https://user-images.githubusercontent.com/82795860/123354917-90c0c180-d59f-11eb-9760-5a6f31814742.png)
 
@@ -172,9 +172,6 @@ API GateWay를 통하여 마이크로 서비스들의 진입점을 통일할 수
 다음과 같이 GateWay를 적용하였다.
 
 ![image](https://user-images.githubusercontent.com/82795860/124970513-f6628280-e062-11eb-9375-c7aa8848adc9.png)
-mypage 서비스의 GateWay 적용
-
-
 ![image](https://user-images.githubusercontent.com/82795860/120988904-f0eeef80-c7b9-11eb-92e3-ed97ecc2b047.png)
 
 ## CQRS
