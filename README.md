@@ -71,13 +71,13 @@ git clone https://github.com/winner59/anticorona.git
 ![Horizontally-Aligned](https://user-images.githubusercontent.com/2360083/119254418-278d0d80-bbf1-11eb-83d1-494ba83aeaf1.png)
 
 ## TO-BE 조직 (Vertically-Aligned)
-![image](https://user-images.githubusercontent.com/82795860/123352803-1130f380-d59b-11eb-8179-d117dfdd4b0f.png)
+![image](https://user-images.githubusercontent.com/82795860/124969096-43ddf000-e061-11eb-8235-77987ae05835.png)
 
 ## Event 도출
-![image](https://user-images.githubusercontent.com/82795860/123352835-23129680-d59b-11eb-81a8-ad3a2d5f9a8b.png)
+![image](https://user-images.githubusercontent.com/82795860/124969169-5a844700-e061-11eb-95db-cb3f180cfa0a.png)
 
 ## 부적격 이벤트 제거
-![image](https://user-images.githubusercontent.com/82795860/123352867-3160b280-d59b-11eb-8ff4-e58eb685a222.png)
+![image](https://user-images.githubusercontent.com/82795860/124969211-653edc00-e061-11eb-8470-457133b32bde.png)
 
 ```
 - 이벤트를 식별하여 타임라인으로 배치하고 중복되거나 잘못된 도메인 이벤트들을 걸러내는 작업을 수행함
@@ -103,9 +103,9 @@ git clone https://github.com/winner59/anticorona.git
 ```
 
 ## Event Storming 최종 결과
-![image](https://user-images.githubusercontent.com/82795860/123355732-404a6380-d5a1-11eb-8ef9-d889095b1e5b.png)
+![image](https://user-images.githubusercontent.com/82795860/124969329-843d6e00-e061-11eb-8fd1-5c2dde76bbf9.png)
 
-![image](https://user-images.githubusercontent.com/82795860/123354727-2d369400-d59f-11eb-957d-9ba3fdf9d13e.png)
+![image](https://user-images.githubusercontent.com/82795860/124969256-725bcb00-e061-11eb-831c-50acd59df256.png)
 
 
 
@@ -122,7 +122,7 @@ git clone https://github.com/winner59/anticorona.git
 ```
 
 ## 헥사고날 아키텍처 다이어그램 도출
-![image](https://user-images.githubusercontent.com/82795860/123352956-6240e780-d59b-11eb-9fa3-9184f80850c1.png)
+![image](https://user-images.githubusercontent.com/82795860/124969377-928b8a00-e061-11eb-9650-515994e194ec.png)
 
 ## System Architecture
 ![image](https://user-images.githubusercontent.com/82795860/123356761-43deea00-d5a3-11eb-8dbe-28b4f8cc00a4.png)
