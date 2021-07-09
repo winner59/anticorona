@@ -10,4 +10,4 @@
     - route:
       - destination:
           host: applying
-      timeout: 3s
+      timeout: 2s
