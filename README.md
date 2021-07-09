@@ -575,10 +575,10 @@ $ kubectl label anticorona tutorial istio-issue=enabled
 
 
 - 부하테스터 siege 툴을 통한 서킷 브레이커 동작 확인:
-  - 동시사용자 100명, 60초 동안 실시
+  - 동시사용자 200명, 10초 동안 실시
 
 ```sh
-$ siege -c100 -t10S -v --content-type "application/json" 'http://booking:8080/bookings POST {"vaccineId":1, "vcName":"FIZER", "userId":5, "status":"BOOKED"}'
+$siege -c200 -t10S -v --content-type "application/json" 'http://applying:8080/applyings POST {"injectionId":5, "vcName":"FIZER",  "status":"INJECTED"}'
 ```
 ![image](https://user-images.githubusercontent.com/82795806/120986972-1549cc80-c7b8-11eb-83e1-7bac5a0e80ed.png)
 
