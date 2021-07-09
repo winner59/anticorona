@@ -630,9 +630,9 @@ livenessProbe:
   failureThreshold: 5
 ```
 
-- port 및 path 잘못된 값으로 변경 후, retry 시도 확인 (in booking 서비스)  
-    - booking deploy yml 수정  
-        ![selfhealing(liveness)-세팅변경](https://user-images.githubusercontent.com/18115456/120985806-ed0d9e00-c7b6-11eb-834f-ffd2c627ecf0.png)
+- port 및 path 잘못된 값으로 변경 후, retry 시도 확인 (in applying 서비스)  
+    - applying deploy.yml 수정  
+        ![image](https://user-images.githubusercontent.com/82795860/125014872-6c89d800-e0a9-11eb-8271-bc3e4fcdef13.png)
 
     - retry 시도 확인  
         ![selfhealing(liveness)-restarts수](https://user-images.githubusercontent.com/18115456/120985797-ebdc7100-c7b6-11eb-8b29-fed32d4a15a3.png)  
