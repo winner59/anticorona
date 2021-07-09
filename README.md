@@ -481,16 +481,16 @@ $ tail -f issue.log
 - 증명서 신청 서비스에 대한 replica 를 동적으로 늘려주도록 HPA 를 설정한다. 설정은 CPU 사용량이 15프로를 넘어서면 replica 를 10개까지 늘려준다:
 
 ```sh
-$ kubectl autoscale deploy booking --min=1 --max=10 --cpu-percent=15
+$ kubectl autoscale deploy applying --min=1 --max=10 --cpu-percent=15
 ```
 
-![image](https://user-images.githubusercontent.com/82795806/120987663-c51f3a00-c7b8-11eb-8cc3-59d725ca2f69.png)
+![image](https://user-images.githubusercontent.com/82795860/125007197-aef7e880-e09a-11eb-8a45-c8915603dbed.png)
 
 
 - CB 에서 했던 방식대로 워크로드를 걸어준다.
 
 ```sh
-$ siege -c200 -t10S -v --content-type "application/json" 'http://booking:8080/applyings POST {"vaccineId":1, "vcName":"FIZER", "userId":5, "status":"BOOKED"}'
+$ siege -c200 -t10S -v --content-type "application/json" 'http://applying:8080/applyings POST {"injectionId":2, "vcName":"FIZER",  "status":"INJECTED"}'
 ```
 
 - 오토스케일이 어떻게 되고 있는지 모니터링을 걸어둔다:
@@ -503,16 +503,16 @@ $ watch kubectl get all
 
 * siege 부하테스트 - 전
 
-![image](https://user-images.githubusercontent.com/82795806/120990254-51caf780-c7bb-11eb-98a6-243b69344f12.png)
+![image](https://user-images.githubusercontent.com/82795860/125007630-a05e0100-e09b-11eb-95cc-e927e8dfc7c6.png)
 
 * siege 부하테스트 - 후
 
-![image](https://user-images.githubusercontent.com/82795806/120989337-66f35680-c7ba-11eb-9b4e-b1425d4a3c2f.png)
+![image](https://user-images.githubusercontent.com/82795860/125008007-883ab180-e09c-11eb-9ba6-7baaf4e99de0.png)
 
 
 - siege 의 로그를 보아도 전체적인 성공률이 높아진 것을 확인 할 수 있다. 
 
-![image](https://user-images.githubusercontent.com/82795806/120990490-93f43900-c7bb-11eb-9295-c3a0a8165ff6.png)
+![image](https://user-images.githubusercontent.com/82795860/125007714-d0a59f80-e09b-11eb-9fb4-fbc0daf4b8be.png)
 
 ## Circuit Breaker
 
