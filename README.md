@@ -578,7 +578,7 @@ $ kubectl label anticorona tutorial istio-issue=enabled
   - 동시사용자 200명, 10초 동안 실시
 
 ```sh
-$siege -c255 -t50S -v --content-type "application/json" 'http://applying:8080/applyings POST {"injectionId":5, "vcName":"FIZER",  "status":"INJECTED"}'
+$siege -c200 -t10S -v --content-type "application/json" 'http://applying:8080/applyings POST {"injectionId":5, "vcName":"FIZER",  "status":"INJECTED"}'
 ```
 
 ![image](https://user-images.githubusercontent.com/82795860/125021503-c2fd1380-e0b5-11eb-9206-4430c6031a4a.png)
