@@ -179,12 +179,7 @@ Materialized View 를 구현하여, 타 마이크로서비스의 데이터 원�
 본 프로젝트에서 View 역할은 mypage 서비스가 수행한다.
 
 접종 신청(Applied) 실행 후 myPage 화면
- 
-![image](https://user-images.githubusercontent.com/82795860/121005958-526b8a00-c7cb-11eb-9bae-ad4bd70ef2eb.png)
-
-
-
-![image](https://user-images.githubusercontent.com/82795860/121006311-bb530200-c7cb-11eb-9d85-a7b22d1a2729.png)
+![image](https://user-images.githubusercontent.com/82795860/125006282-b3230680-e098-11eb-90e2-297db5673a91.png)
   
 ## 폴리글랏 퍼시스턴스
 mypage 서비스의 DB와 applying/injection/issue/mypagae 서비스의 DB를 다른 DB를 사용하여 MSA간 서로 다른 종류의 DB간에도 문제 없이 
@@ -220,17 +215,14 @@ Injection 서비스 내 Applying 서비스 Feign Client 요청 대상
 
 증명서 발급 신청하기 시도 시  접종 완료 여부를 체크함
 
-![image](https://user-images.githubusercontent.com/82795860/120994076-1e8a6780-c7bf-11eb-8374-53f7a4336a1a.png)
-
-
 접종완료 시 증명서 발급 신청 가능
 
-![image](https://user-images.githubusercontent.com/82795860/120997798-78406100-c7c2-11eb-90fa-b8ff71f53c77.png)
+![image](https://user-images.githubusercontent.com/82795860/125006049-29733900-e098-11eb-808c-cdb79aea9631.png)
 
 
 접종완료가 아닐경우 증명서 발급 신청 안됨
 
-![image](https://user-images.githubusercontent.com/82795860/123369429-b6a69000-d5b8-11eb-80e3-4551479347d2.png)
+![image](https://user-images.githubusercontent.com/82795860/125006148-693a2080-e098-11eb-828f-b6e2fa6d6642.png)
 
   
 # 운영
