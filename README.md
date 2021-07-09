@@ -604,12 +604,14 @@ readinessProbe:
 ```
 
 - deployment.yml에서 readiness 설정 제거 후, 배포중 siege 테스트 진행  
-    - hpa 설정에 의해 target 지수 초과하여 booking scale-out 진행됨  
+    - hpa 설정에 의해 target 지수 초과하여 applying scale-out 진행됨 
+    - ![image](https://user-images.githubusercontent.com/82795860/125024777-65b89080-e0bc-11eb-9034-971e7a1d5914.png)
+ 
         ![readiness-배포중](https://user-images.githubusercontent.com/18115456/120991348-7ecbda00-c7bc-11eb-8b4d-bdb6dacad1cf.png)
 
-    - booking이 배포되는 중,  
-    정상 실행중인 booking으로의 요청은 성공(201),  
-    배포중인 booking으로의 요청은 실패(503 - Service Unavailable) 확인
+    - applying이 배포되는 중,  
+    정상 실행중인 applying으로의 요청은 성공(201),  
+    배포중인 applying으로의 요청은 실패 확인
         ![readiness2](https://user-images.githubusercontent.com/18115456/120987386-81c4cb80-c7b8-11eb-84e7-5c00a9b1a2ff.PNG)  
 
 - 다시 readiness 정상 적용 후, Availability 100% 확인  
