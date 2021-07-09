@@ -566,12 +566,12 @@ $ kubectl label anticorona tutorial istio-issue=enabled
       timeout: 3s
 ```	  
 
-![image](https://user-images.githubusercontent.com/82795806/120985451-956f3280-c7b6-11eb-95a4-eb5a8c1ebce4.png)
+![image](https://user-images.githubusercontent.com/82795860/125018239-acec5480-e0af-11eb-88b2-14e272eb0c25.png)
 
 
 - Applying 서비스 재배포 후 Pod에 CB 부착 확인
 
-![image](https://user-images.githubusercontent.com/82795806/120985804-ed0d9e00-c7b6-11eb-9f13-8a961c73adc0.png)
+![image](https://user-images.githubusercontent.com/82795860/125018288-c2fa1500-e0af-11eb-98be-922ff7c3cc29.png)
 
 
 - 부하테스터 siege 툴을 통한 서킷 브레이커 동작 확인:
