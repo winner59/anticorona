@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-@FeignClient(name="injection",  url="http://localhost:8081")
+@FeignClient(name="injection",  url="http://${api.url.injection}:8080")
 public interface InjectionService {
 
     @RequestMapping(method= RequestMethod.GET, path="/injections/checkStatus")
