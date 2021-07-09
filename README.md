@@ -178,11 +178,11 @@ API GateWay를 통하여 마이크로 서비스들의 진입점을 통일할 수
 Materialized View 를 구현하여, 타 마이크로서비스의 데이터 원본에 접근없이(Composite 서비스나 조인SQL 등 없이) 도 내 서비스의 화면 구성과 잦은 조회가 가능하게 구현해 두었다.
 본 프로젝트에서 View 역할은 mypage 서비스가 수행한다.
 
-접종 신청(Applied) 실행 후 myPage 화면
+증명서 발급 신청(Applied) 실행 후 myPage 화면
 ![image](https://user-images.githubusercontent.com/82795860/125006282-b3230680-e098-11eb-90e2-297db5673a91.png)
   
 ## 폴리글랏 퍼시스턴스
-mypage 서비스의 DB와 applying/injection/issue/mypagae 서비스의 DB를 다른 DB를 사용하여 MSA간 서로 다른 종류의 DB간에도 문제 없이 
+mypage 서비스의 DB와 applying/injection/issue 서비스의 DB를 다른 DB를 사용하여 MSA간 서로 다른 종류의 DB간에도 문제 없이 
 동작하여 다형성을 만족하는지 확인하였다.(폴리글랏을 만족)
 
 |서비스|DB|pom.xml|
@@ -402,13 +402,13 @@ spec:
 - 변경 가능성이 있는 설정을 ConfigMap을 사용하여 관리  
   - applying 서비스에서 바라보는 injection 서비스 url 일부분을 ConfigMap 사용하여 구현​  
 
-- in applying src (applying/src/main/java/anticorona/external/VaccineService.java)  
+- in applying src (applying/src/main/java/anticorona/external/InjectionService.java)  
 ![image](https://user-images.githubusercontent.com/82795860/125002770-a3072900-e090-11eb-8811-896ed0516e65.png)
 
-- applying application.yml (booking/src/main/resources/application.yml)​  
+- applying application.yml (applying/src/main/resources/application.yml)​  
   ![image](https://user-images.githubusercontent.com/82795860/123354126-f4e28600-d59d-11eb-8db6-7d4e60b2a299.png)
 
-- applying deploy yml (booking/kubernetes/deployment.yml)  
+- applying deploy yml (applying/kubernetes/deployment.yml)  
   ![image](https://user-images.githubusercontent.com/82795860/123354155-0330a200-d59e-11eb-8f10-0c5198b150a3.png)
 
 - configmap 생성 후 조회
@@ -453,12 +453,12 @@ PVC 생성 파일
 마운트 경로에 logging file 생성 확인
 
 ```sh
-$ kubectl exec -it issue -n anticorona -- /bin/sh
+$ kubectl exec -it pod/applying-5bbc5b6cfd-4r4dg -- /bin/sh
 $ cd /mnt/azure/logs
-$ tail -f issue.log
+$ tail -f applying.log
 ```
 
-![image](https://user-images.githubusercontent.com/82795860/123354338-6589a280-d59e-11eb-8b60-f9f4667764f3.png)
+![image](https://user-images.githubusercontent.com/82795860/125009031-b7522280-e09e-11eb-92ee-90b6c9483307.png)
 
 ## Autoscale (HPA)
 
