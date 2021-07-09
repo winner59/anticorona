@@ -172,7 +172,7 @@ API GateWay를 통하여 마이크로 서비스들의 진입점을 통일할 수
 다음과 같이 GateWay를 적용하였다.
 
 ![image](https://user-images.githubusercontent.com/82795860/124970513-f6628280-e062-11eb-9375-c7aa8848adc9.png)
-![image](https://user-images.githubusercontent.com/82795860/120988904-f0eeef80-c7b9-11eb-92e3-ed97ecc2b047.png)
+![image](https://user-images.githubusercontent.com/82795860/125002512-16f50180-e090-11eb-8365-f5d12db55fc3.png)
 
 ## CQRS
 Materialized View 를 구현하여, 타 마이크로서비스의 데이터 원본에 접근없이(Composite 서비스나 조인SQL 등 없이) 도 내 서비스의 화면 구성과 잦은 조회가 가능하게 구현해 두었다.
@@ -411,7 +411,7 @@ spec:
   - applying 서비스에서 바라보는 injection 서비스 url 일부분을 ConfigMap 사용하여 구현​  
 
 - in applying src (applying/src/main/java/anticorona/external/VaccineService.java)  
-    ![image](https://user-images.githubusercontent.com/82795860/123354105-e6946a00-d59d-11eb-8d9b-df1bf74e3ee3.png)
+![image](https://user-images.githubusercontent.com/82795860/125002770-a3072900-e090-11eb-8811-896ed0516e65.png)
 
 - applying application.yml (booking/src/main/resources/application.yml)​  
   ![image](https://user-images.githubusercontent.com/82795860/123354126-f4e28600-d59d-11eb-8db6-7d4e60b2a299.png)
@@ -425,7 +425,7 @@ spec:
     kubectl create configmap apiurl --from-literal=url=injection -n anticorona
     ```
 
-    ![configmap-configmap조회](https://user-images.githubusercontent.com/18115456/120985042-2eea1480-c7b6-11eb-9dbc-e73d696c003b.PNG)
+  ![image](https://user-images.githubusercontent.com/82795860/125003058-4c4e1f00-e091-11eb-8a50-81a91f4069c9.png)
 
 - configmap 삭제 후, 에러 확인  
 
@@ -433,9 +433,9 @@ spec:
     kubectl delete configmap apiurl
     ```
 
-    ![configmap-오류1](https://user-images.githubusercontent.com/18115456/120985205-5b9e2c00-c7b6-11eb-8ede-df74eff7f344.png)
+![image](https://user-images.githubusercontent.com/82795860/125003279-d26a6580-e091-11eb-9a25-de40dba6c3e9.png)
 
-    ![configmap-오류2](https://user-images.githubusercontent.com/18115456/120985213-5ccf5900-c7b6-11eb-9c06-5402942329a3.png)  
+![image](https://user-images.githubusercontent.com/82795860/125003351-00e84080-e092-11eb-9bbf-fab88cddb259.png)
 
 ## Persistence Volume
   
