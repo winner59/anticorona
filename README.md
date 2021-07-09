@@ -178,16 +178,11 @@ API GateWay를 통하여 마이크로 서비스들의 진입점을 통일할 수
 Materialized View 를 구현하여, 타 마이크로서비스의 데이터 원본에 접근없이(Composite 서비스나 조인SQL 등 없이) 도 내 서비스의 화면 구성과 잦은 조회가 가능하게 구현해 두었다.
 본 프로젝트에서 View 역할은 mypage 서비스가 수행한다.
 
-접종 신청(Applied) 실행 후 myPage 화면
- 
-![image](https://user-images.githubusercontent.com/82795860/121005958-526b8a00-c7cb-11eb-9bae-ad4bd70ef2eb.png)
-
-
-
-![image](https://user-images.githubusercontent.com/82795860/121006311-bb530200-c7cb-11eb-9d85-a7b22d1a2729.png)
+증명서 발급 신청(Applied) 실행 후 myPage 화면
+![image](https://user-images.githubusercontent.com/82795860/125006282-b3230680-e098-11eb-90e2-297db5673a91.png)
   
 ## 폴리글랏 퍼시스턴스
-mypage 서비스의 DB와 applying/injection/issue/mypagae 서비스의 DB를 다른 DB를 사용하여 MSA간 서로 다른 종류의 DB간에도 문제 없이 
+mypage 서비스의 DB와 applying/injection/issue 서비스의 DB를 다른 DB를 사용하여 MSA간 서로 다른 종류의 DB간에도 문제 없이 
 동작하여 다형성을 만족하는지 확인하였다.(폴리글랏을 만족)
 
 |서비스|DB|pom.xml|
@@ -220,17 +215,14 @@ Injection 서비스 내 Applying 서비스 Feign Client 요청 대상
 
 증명서 발급 신청하기 시도 시  접종 완료 여부를 체크함
 
-![image](https://user-images.githubusercontent.com/82795860/120994076-1e8a6780-c7bf-11eb-8374-53f7a4336a1a.png)
-
-
 접종완료 시 증명서 발급 신청 가능
 
-![image](https://user-images.githubusercontent.com/82795860/120997798-78406100-c7c2-11eb-90fa-b8ff71f53c77.png)
+![image](https://user-images.githubusercontent.com/82795860/125006049-29733900-e098-11eb-808c-cdb79aea9631.png)
 
 
 접종완료가 아닐경우 증명서 발급 신청 안됨
 
-![image](https://user-images.githubusercontent.com/82795860/123369429-b6a69000-d5b8-11eb-80e3-4551479347d2.png)
+![image](https://user-images.githubusercontent.com/82795860/125006148-693a2080-e098-11eb-828f-b6e2fa6d6642.png)
 
   
 # 운영
@@ -410,13 +402,13 @@ spec:
 - 변경 가능성이 있는 설정을 ConfigMap을 사용하여 관리  
   - applying 서비스에서 바라보는 injection 서비스 url 일부분을 ConfigMap 사용하여 구현​  
 
-- in applying src (applying/src/main/java/anticorona/external/VaccineService.java)  
+- in applying src (applying/src/main/java/anticorona/external/InjectionService.java)  
 ![image](https://user-images.githubusercontent.com/82795860/125002770-a3072900-e090-11eb-8811-896ed0516e65.png)
 
-- applying application.yml (booking/src/main/resources/application.yml)​  
+- applying application.yml (applying/src/main/resources/application.yml)​  
   ![image](https://user-images.githubusercontent.com/82795860/123354126-f4e28600-d59d-11eb-8db6-7d4e60b2a299.png)
 
-- applying deploy yml (booking/kubernetes/deployment.yml)  
+- applying deploy yml (applying/kubernetes/deployment.yml)  
   ![image](https://user-images.githubusercontent.com/82795860/123354155-0330a200-d59e-11eb-8f10-0c5198b150a3.png)
 
 - configmap 생성 후 조회
@@ -461,12 +453,12 @@ PVC 생성 파일
 마운트 경로에 logging file 생성 확인
 
 ```sh
-$ kubectl exec -it issue -n anticorona -- /bin/sh
+$ kubectl exec -it pod/applying-5bbc5b6cfd-4r4dg -- /bin/sh
 $ cd /mnt/azure/logs
-$ tail -f issue.log
+$ tail -f applying.log
 ```
 
-![image](https://user-images.githubusercontent.com/82795860/123354338-6589a280-d59e-11eb-8b60-f9f4667764f3.png)
+![image](https://user-images.githubusercontent.com/82795860/125009031-b7522280-e09e-11eb-92ee-90b6c9483307.png)
 
 ## Autoscale (HPA)
 
@@ -489,16 +481,16 @@ $ tail -f issue.log
 - 증명서 신청 서비스에 대한 replica 를 동적으로 늘려주도록 HPA 를 설정한다. 설정은 CPU 사용량이 15프로를 넘어서면 replica 를 10개까지 늘려준다:
 
 ```sh
-$ kubectl autoscale deploy booking --min=1 --max=10 --cpu-percent=15
+$ kubectl autoscale deploy applying --min=1 --max=10 --cpu-percent=15
 ```
 
-![image](https://user-images.githubusercontent.com/82795806/120987663-c51f3a00-c7b8-11eb-8cc3-59d725ca2f69.png)
+![image](https://user-images.githubusercontent.com/82795860/125007197-aef7e880-e09a-11eb-8a45-c8915603dbed.png)
 
 
 - CB 에서 했던 방식대로 워크로드를 걸어준다.
 
 ```sh
-$ siege -c200 -t10S -v --content-type "application/json" 'http://booking:8080/applyings POST {"vaccineId":1, "vcName":"FIZER", "userId":5, "status":"BOOKED"}'
+$ siege -c200 -t10S -v --content-type "application/json" 'http://applying:8080/applyings POST {"injectionId":2, "vcName":"FIZER",  "status":"INJECTED"}'
 ```
 
 - 오토스케일이 어떻게 되고 있는지 모니터링을 걸어둔다:
@@ -511,16 +503,16 @@ $ watch kubectl get all
 
 * siege 부하테스트 - 전
 
-![image](https://user-images.githubusercontent.com/82795806/120990254-51caf780-c7bb-11eb-98a6-243b69344f12.png)
+![image](https://user-images.githubusercontent.com/82795860/125007630-a05e0100-e09b-11eb-95cc-e927e8dfc7c6.png)
 
 * siege 부하테스트 - 후
 
-![image](https://user-images.githubusercontent.com/82795806/120989337-66f35680-c7ba-11eb-9b4e-b1425d4a3c2f.png)
+![image](https://user-images.githubusercontent.com/82795860/125008007-883ab180-e09c-11eb-9ba6-7baaf4e99de0.png)
 
 
 - siege 의 로그를 보아도 전체적인 성공률이 높아진 것을 확인 할 수 있다. 
 
-![image](https://user-images.githubusercontent.com/82795806/120990490-93f43900-c7bb-11eb-9295-c3a0a8165ff6.png)
+![image](https://user-images.githubusercontent.com/82795860/125007714-d0a59f80-e09b-11eb-9fb4-fbc0daf4b8be.png)
 
 ## Circuit Breaker
 
