@@ -578,9 +578,10 @@ $ kubectl label anticorona tutorial istio-issue=enabled
   - 동시사용자 200명, 10초 동안 실시
 
 ```sh
-$siege -c200 -t10S -v --content-type "application/json" 'http://applying:8080/applyings POST {"injectionId":5, "vcName":"FIZER",  "status":"INJECTED"}'
+$siege -c255 -t50S -v --content-type "application/json" 'http://applying:8080/applyings POST {"injectionId":5, "vcName":"FIZER",  "status":"INJECTED"}'
 ```
-![image](https://user-images.githubusercontent.com/82795806/120986972-1549cc80-c7b8-11eb-83e1-7bac5a0e80ed.png)
+
+![image](https://user-images.githubusercontent.com/82795860/125021503-c2fd1380-e0b5-11eb-9206-4430c6031a4a.png)
 
 
 - 운영시스템은 죽지 않고 지속적으로 CB 에 의하여 적절히 회로가 열림과 닫힘이 벌어지면서 자원을 보호하고 있음을 보여줌. 
